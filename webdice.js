@@ -7,6 +7,7 @@ webdice.roll = function(request, response) {
   dice = {};
   dice.string = request.query.dice;
   dice.set = webdice.parse(dice.string);
+  
   dice.html = '<p>Rolling';
 
   if (dice.set.num == 1) {
@@ -29,11 +30,17 @@ webdice.roll = function(request, response) {
 	dice.html += dice.rolls[i]+'<br>';
 	dice.result += dice.rolls[i];
   }
-  
+
   dice.html += '</p><h1>Result: '+dice.result+'</h1>';
+
   
-  response.setHeader('Content-Type', 'text/html');
-  response.end(dice.html);
+  if (request.query.format == 'json') {
+    response.setHeader('Content-Type', 'text/plain');
+	response.end(JSON.stringify(dice));
+  } else {
+    response.setHeader('Content-Type', 'text/html');
+    response.end(dice.html);
+  }
 }
 
 webdice.parse = function(inString) {
