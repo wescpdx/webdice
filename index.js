@@ -1,11 +1,14 @@
 
-var server = require("./server");
-var router = require("./router");
-var newuser = require("./newuser");
-var db = require("./db");
+var http = require('http');
+var express = require('express');
 
-db.connect();
+var content = require('./content');
+var webdice = require('./webdice');
 
-router.initialize(db.connection);
-newuser.initialize(db.connection);
-server.start(router.route);
+var app = express();
+
+
+app.get('/', content.homepage);
+app.get('/roll', webdice.roll);
+
+app.listen(8888);
