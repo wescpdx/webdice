@@ -1,6 +1,13 @@
 {
   "name" : "webdice",
   "version" : "0.0.1",
+  "description" : "Super simple dice rolling service",
+  "main" : "index.js",
+  "author" : "Wes Contreras <wes@wescontreras.com>",
+  "license" : "GPL v3",
+  "engines" : {
+    "node" : "0.10.x"
+  },
   "dependencies" : {
     "express": "4.x"
   }
