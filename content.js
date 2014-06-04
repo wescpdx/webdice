@@ -1,9 +1,8 @@
 
 var content = {};
 
-content.homepage = function(request, response) {
-  response.setHeader('Content-Type', 'text/plain');
-  response.end('This is the homepage');
+content.homepage = function(reqt, res) {
+  res.sendfile('index.html');
 }
 
 module.exports = content;

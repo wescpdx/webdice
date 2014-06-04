@@ -3,9 +3,9 @@ var util = require('util');
 
 var webdice = {};
 
-webdice.roll = function(request, response) {
+webdice.roll = function(req, res) {
   dice = {};
-  dice.string = request.query.dice;
+  dice.string = req.query.dice;
   dice.set = webdice.parse(dice.string);
   
   dice.html = '<p>Rolling';
@@ -33,13 +33,15 @@ webdice.roll = function(request, response) {
 
   dice.html += '</p><h1>Result: '+dice.result+'</h1>';
 
-  
-  if (request.query.format == 'json') {
-    response.setHeader('Content-Type', 'text/plain');
-	response.end(JSON.stringify(dice));
+
+  if (typeof(req.query.format) == 'undefined' || req.query.format == 'html') {
+    res.set('Content-Type', 'text/html');
+    res.send(200, dice.html);
+  } else if (req.query.format == 'json') {
+    res.set('Content-Type', 'application/json');
+	res.send(200, JSON.stringify(dice));
   } else {
-    response.setHeader('Content-Type', 'text/html');
-    response.end(dice.html);
+    res.send(400, 'Format not supported');
   }
 }
 
@@ -51,14 +53,12 @@ webdice.parse = function(inString) {
 	set.plus = inString.split('p')[1];
   } else {
     dstring = inString;
-	set.plus = 0;
   }
   if (dstring.indexOf('d') > -1) {
     set.num = dstring.split('d')[0];
 	set.type = dstring.split('d')[1];
   } else {
     set.num = dstring;
-	set.type = 1;
   }
   set.plus = parseInt(set.plus);
   if (isNaN(set.plus)) {
@@ -70,7 +70,7 @@ webdice.parse = function(inString) {
   }
   set.type = parseInt(set.type);
   if (isNaN(set.type)) {
-    set.type = 1;
+    set.type = 10;
   }
   return set;
 }
