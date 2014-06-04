@@ -28,4 +28,4 @@ var app = express();
 app.get('/', content.homepage);
 app.get('/roll', webdice.roll);
 
-app.listen(5000);
+app.listen(process.env.PORT || 8888);
