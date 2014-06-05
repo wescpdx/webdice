@@ -1,14 +1,23 @@
 {
-  "name" : "webdice",
-  "version" : "0.0.1",
+  "name": "webdice",
   "description" : "Super simple dice rolling service",
-  "main" : "index.js",
+  "version": "0.0.2",
   "author" : "Wes Contreras <wes@wescontreras.com>",
   "license" : "GPL v3",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "engines" : {
     "node" : "0.10.x"
   },
-  "dependencies" : {
-    "express": "4.x"
+  "dependencies": {
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0"
   }
 }
