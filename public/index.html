@@ -15,29 +15,30 @@
 <p>GET</p>
 
 <h2>URL Params:</h2>
-<h3>dice=[string]</h3>
-<p>Where [string] is in the format ##d##p##, with the first ## being an integer representing the number
-of dice, the second ## being an integer representing the number of sides on each die, and the third ##
-being an integer representing the number that should be added to the total.</p>
-<p>If the 'd' is omitted, the application will defualt to rolling 10-sided dice. If the 'p' is 
-ommitted, the application will default to adding zero to the total. If non-numeric characters other
-than a single 'd' and 'p' are included, the application will make a rudimentary effort to extract
-numbers, but results are formally undefined.</p>
-<h4>Examples</h4>
+<h3>action=[string]</h3>
+<p>WHere [string] is a text string indicating the action to be taken for the dice when rolled. If omitted,
+the application defaults to 'add'. Invalid actions return a 400 error. Options supported are:</p>
 <ul>
-<li><b>dice=1d10</b>: Rolls a single 10-sided die.</li>
-<li><b>dice=1d10p12</b>: Rolls a single 10-sided die and adds 12.</li>
-<li><b>dice=4p5</b>: Rolls 4 10-sided dice.</li>
+    <li><b>add</b>: Adds the reults of all dice</li>
 </ul>
+
+<h3>num=[number]</h3>
+<p>Where [number] is the number of dice to be rolled. Defaults to rolling a single die if omitted.</p>
+
+<h3>type=[number]</h3>
+<p>Where [number] is the number of sides on the dice to be rolled. Defaults to 10-sided dice if omitted.</p>
+
+<h3>plus=[number]</h3>
+<p>WHere [number] is a number that will be added to the final sum.</p>
 
 <h3>format=[string]</h3>
 <p>Where [string] is a text string indicating the format used when delivering the dice results. If
 omitted, the application defaults to 'html'. Invalid format options return a 400 error. Options
 supported are:</p>
 <ul>
-<li><b>html</b>: Returns results in human-readable HTML.</li>
-<li><b>json</b>: Returns JSON object with results described. The [object].result property contains 
-the final results of the roll.</li>
+    <li><b>html</b>: Returns results in human-readable HTML.</li>
+    <li><b>json</b>: Returns JSON object with results described. The [object].result property contains
+    the final results of the roll.</li>
 </ul>
 
 </body>
