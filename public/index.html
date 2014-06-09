@@ -16,10 +16,11 @@
 
 <h2>URL Params:</h2>
 <h3>action=[string]</h3>
-<p>WHere [string] is a text string indicating the action to be taken for the dice when rolled. If omitted,
+<p>Where [string] is a text string indicating the action to be taken for the dice when rolled. If omitted,
 the application defaults to 'add'. Invalid actions return a 400 error. Options supported are:</p>
 <ul>
-    <li><b>add</b>: Adds the reults of all dice</li>
+    <li><b>add</b>: Adds the reults of all dice.</li>
+    <li><b>count</b>: Counts the number of dice that exceed a given value.</li>
 </ul>
 
 <h3>num=[number]</h3>
@@ -29,7 +30,23 @@ the application defaults to 'add'. Invalid actions return a 400 error. Options s
 <p>Where [number] is the number of sides on the dice to be rolled. Defaults to 10-sided dice if omitted.</p>
 
 <h3>plus=[number]</h3>
-<p>WHere [number] is a number that will be added to the final sum.</p>
+<p>Used only when action=add. Where [number] is a number that will be added to the final sum. Defaults
+to 0 if omitted.</p>
+
+<h3>atleast=[number]</h3>
+<p>Used only when action=count. Increments the count by 1 for each die that rolls a value of at least [number].
+If [number] is greater than the value of the 'type' parameter, or is omitted, then 'atleast' will be set equal
+to the 'type' parameter.</p>
+
+<h3>explodes=[number]</h3>
+<p>Indicates "exploding" dice, where dice are re-rolled if they roll a value of [number] or higher. When set
+to zero, no re-rolling takes place. If action=add, then both values are added to the total, and the default
+value is 0. If action=count, then either or both rolls may increment the count, and the default value is
+equal to the type parameter, so rolling the maximum results in a re-roll.</p>
+
+<h3>numexplodes=[number]</h3>
+<p>Where [number] is the maximum number of re-rolls that can be triggered by "exploding" dice. If
+numexplodes=0, there is no limit to the number of re-rolls. Defaults to 0 if omitted.</p>
 
 <h3>format=[string]</h3>
 <p>Where [string] is a text string indicating the format used when delivering the dice results. If

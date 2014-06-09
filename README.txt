@@ -4,6 +4,11 @@ This is a Node.js application. Initiate the server by running index.js.
 
 Instructions for use of the API are documented in /index.html.
 
+GitHub:
+https://github.com/wescpdx/webdice
+
+Heroku demo:
+http://webdice.herokuapp.com/
 
 
 /**
