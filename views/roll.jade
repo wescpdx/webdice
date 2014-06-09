@@ -1,0 +1,9 @@
+extends layout
+block content
+  h1= WebDice
+  p #{explain}.
+  p Rolling...
+  ul
+    each val, index in work
+      li Roll #{index}: #{val}
+  h2 Result: #{result}

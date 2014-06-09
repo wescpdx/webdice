@@ -6,6 +6,6 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/roll', require('../bin/rolldice.js'));
+router.get('/roll', require('./roll.js'));
 
 module.exports = router;
